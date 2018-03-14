@@ -117,12 +117,8 @@ public class PinoLRU {
 		lru.set(9, 300);
 		lru.set(10, 200);
 		
-		
 		//lru.printLRU();
-
-
 	}
-
 }
 
 class DoubleLinkedList {
