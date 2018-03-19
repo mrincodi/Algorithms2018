@@ -1,8 +1,8 @@
-package pinos;
+package basic_data_structures;
 
 import java.util.HashMap;
 
-public class PinoLRU {
+public class LRU {
 
 	public static final int MAX_CAPACITY = 10; 
 	public static final int NOT_FOUND = -1; 
@@ -32,7 +32,7 @@ public class PinoLRU {
 				capacity++;
 
 				hashmap.put(key, newNode);
-				
+
 				//What if we overflow?
 				// I am supposing here that MAX_CAPACITY > 1.
 				if ( capacity > MAX_CAPACITY){
@@ -47,7 +47,7 @@ public class PinoLRU {
 					listEnd.next=null;
 
 				}
-				
+
 			}
 		}
 		else {
@@ -72,7 +72,7 @@ public class PinoLRU {
 				hashmap.put(key, node);
 			}
 		}
-		
+
 		printLRU();
 
 
@@ -88,7 +88,7 @@ public class PinoLRU {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PinoLRU lru = new PinoLRU();
+		LRU lru = new LRU();
 
 		lru.set(4, 100);
 		lru.set(7, 120);
@@ -104,7 +104,7 @@ public class PinoLRU {
 		lru.set(8, 500);
 		lru.set(9, 600);
 
-		
+
 		lru.set(100, 400);
 		lru.set(1, 600);
 		lru.set(2, 500);
@@ -116,7 +116,7 @@ public class PinoLRU {
 		lru.set(8, 400);
 		lru.set(9, 300);
 		lru.set(10, 200);
-		
+
 		//lru.printLRU();
 	}
 }

@@ -1,15 +1,13 @@
-package pinos;
-
-
+package basic_data_structures;
 
 public class Graph {
-	int V; // Num vertices.
+	int V; // Num. vertices.
 	java.util.ArrayList <Integer> [] adjacencyList;
 
 	Graph ( int v ) {
 		this.V=v;
 
-		adjacencyList = new java.util.ArrayList[v];	// HOw to remove this warning?
+		adjacencyList = new java.util.ArrayList[v];	// How to remove this warning?
 
 		for ( int i = 0; i < v; i++ )
 			adjacencyList[i] = new java.util.ArrayList <Integer> ();
@@ -44,6 +42,28 @@ public class Graph {
 		}
 	}
 
+	void printDFS (int origen ){
+		java.util.Stack<Integer> s = new java.util.Stack <Integer> ();
+		boolean [] visited = new boolean [V];
+		s.push(origen);
+		visited[origen]=true;
+
+		while (!s.isEmpty()){
+			int node = s.pop();
+			System.out.print(node + " ");
+
+			java.util.ArrayList <Integer> neighbors = adjacencyList[node];
+
+			for ( int neighbor: neighbors ){
+				if (!visited[neighbor]){
+					visited[neighbor] = true;
+					s.push(neighbor);
+				}
+			}
+		}
+	}
+
+
 	public static void main ( String [] args ){
 		Graph g = new Graph (6);
 
@@ -51,9 +71,9 @@ public class Graph {
 		g.addEdge ( 1, 3 );
 		g.addEdge ( 2, 4 );
 		g.addEdge ( 3, 4 );
-		g.addEdge ( 3, 5 );
+		g.addEdge ( 4, 5 );
 
-		g.printBFS(1);
+		g.printDFS(1);
 	}
 }
 

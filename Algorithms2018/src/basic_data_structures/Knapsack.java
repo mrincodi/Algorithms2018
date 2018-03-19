@@ -1,4 +1,4 @@
-package pinos;
+package basic_data_structures;
 
 import java.util.ArrayList;
 import java.util.Arrays;
