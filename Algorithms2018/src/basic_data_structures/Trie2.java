@@ -67,7 +67,8 @@ public class Trie2 {
 	}
 
 	/**
-	 * OK, this is going to be really random only if all the words are the same size.
+	 * OK, this is not really true. Words that start with letters that are less used are more probable.
+	 * That's why I am getting so many words that start with ñ or with upper case letters.
 	 * @return The random word.
 	 */
 	public String getRandomWord (){
