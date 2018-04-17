@@ -4,6 +4,7 @@ package pino_word_challenge;
  * TODO:
  * - Clean code.
  * - Present words in 5 columns top-down.
+ * - Need to fill 2 Trie structures? Can't we just work with 1?
  *  
  */
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class Game {
 	public void game () throws java.io.IOException{
 		java.io.File dir = new java.io.File (DIR);
 
-		Game g = new Game (dir, 23);
+		Game g = new Game (dir);
 
 		while ( true ){ 
 			String w = g.t.getRandomWord();
