@@ -122,51 +122,21 @@ public class Trie2 {
 		for (final java.io.File fileEntry : dir.listFiles()) {
 			if (!fileEntry.isDirectory()) {
 				java.io.File f = new java.io.File (fileEntry.getAbsolutePath());
-				//System.out.println(f.getName());
 				fill(f);
 			}
 		}
 	}
 
 	public static void main(String[] args) throws java.io.IOException {
-		//		java.util.ArrayList <String> words;
-		//		words = new java.util.ArrayList <String> (Arrays.asList("perro", "perrote", "perrón", "gato", "pena"));
 		Trie2 t = new Trie2();
 		boolean result;
 
-		//		t.fill(words);
-
-		//		boolean result = t.isWordThere("perro");
-		//
-		//		System.out.println(result);
-
-
 		java.io.File dir = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/dir");
 		t.fillFromDir(dir);
-		//		java.io.File f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/a.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/b.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/c.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/d.txt");
-		//		t.fill(f);
-
-
-
-
 
 		result = t.isWordThere("animadversión");
 
 		System.out.println(result);
-
-
-		//System.out.println("Ya");
-
-
 
 	}
 

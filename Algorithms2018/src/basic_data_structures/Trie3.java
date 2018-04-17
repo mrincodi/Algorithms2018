@@ -142,11 +142,11 @@ public class Trie3 {
 		String q  = this.getWordFromNumber(n);
 		return q;
 	}
-	
+
 	public java.util.ArrayList <String> wordsWithLetters ( String letters ){
-		
+
 		if ( letters == null ) return null;
-		
+
 		char [] let = letters.toCharArray();
 		java.util.Arrays.sort(let);
 		letters = new String (let);
@@ -155,15 +155,15 @@ public class Trie3 {
 
 	private ArrayList<String> wordsWithLettersRec(String sortedLetters) {
 		ArrayList<String> result = new ArrayList<String>();
-		
+
 		if (sortedLetters.length() == 0) return result;
-		
+
 		for ( int i = 0; i < sortedLetters.length(); i++){
 			char c = sortedLetters.charAt(i);
-			
-			 //So we don't have repeated words in case of repeated letters:
+
+			//So we don't have repeated words in case of repeated letters:
 			if ( i > 0 && sortedLetters.charAt(i-1) == c) continue;
-			
+
 			if (this.h.containsKey(c)){
 				//Is this the end of a word?
 				if ( this.h.get(c).h.containsKey(END_WORD))
@@ -177,71 +177,25 @@ public class Trie3 {
 				}
 			}
 		}
-		
-		// TODO Auto-generated method stub
+
 		return result;
 	}
 
 	public static void main(String[] args) throws java.io.IOException {
-		//		java.util.ArrayList <String> words;
-		//		words = new java.util.ArrayList <String> (Arrays.asList("perro", "perrote", "perrón", "gato", "pena"));
 		Trie3 t = new Trie3();
 		boolean result;
-
-		//		t.fill(words);
-
-		//		boolean result = t.isWordThere("perro");
-		//
-		//		System.out.println(result);
-
 
 		java.io.File dir = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/dir");
 		t.fillFromDir(dir);
 
-		//		t.fill("amo");
-		//		t.fill("aso");
-		//		t.fill("perro");
+		String q = t.getRandomWord();
+		System.out.println("The word is "+ q);
+		ArrayList <String> littleWords = t.wordsWithLetters(q);
 
-		//int total_size = t.my_size;
-		//java.util.Random rand = new java.util.Random();
-
-		//for ( int i = 0; i < 100; i++){
-			String q = t.getRandomWord();
-			//q= "casa"; 
-//			int  n = rand.nextInt(total_size) + 1;
-//			String q  = t.getWordFromNumber(n);
-			System.out.println("The word is "+ q);
-			ArrayList <String> littleWords = t.wordsWithLetters(q);
-
-				System.out.println(littleWords);
-
-		//}
-
-		//		java.io.File f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/a.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/b.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/c.txt");
-		//		t.fill(f);
-		//
-		//		f = new java.io.File ("/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/d.txt");
-		//		t.fill(f);
-
-
-
-
+		System.out.println(littleWords);
 
 		result = t.isWordThere("animadversión");
 
 		System.out.println(result);
-
-
-		//System.out.println("Ya");
-
-
-
 	}
-
 }
