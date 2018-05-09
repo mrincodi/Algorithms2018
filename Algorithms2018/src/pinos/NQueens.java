@@ -82,7 +82,7 @@ public class NQueens {
 
 
 	public static void main(String[] args) {
-		ArrayList<ArrayList<String>> solutions = new NQueens().solveNQueens(6);
+		ArrayList<ArrayList<String>> solutions = new NQueens().solveNQueens(12);
 		System.out.println (solutions);
 
 	}
