@@ -40,9 +40,22 @@ public class Sera {
 
 		
 		int x = -5;
-		int y = x % 0;
-		System.out.println(y);
+		//int y = x % 0;
+		//System.out.println(y);
 		
+		//x = Character.getNumericValue('\\u005Cu216C');
+		System.out.println(x);
+		
+		java.util.TreeSet <Integer> t = new java.util.TreeSet < Integer > ( java.util.Collections.reverseOrder ());
+
+		t.add(3);
+		t.add(4);
+		t.add(7);
+		t.add(6);
+		
+		java.util.Iterator < Integer > iter = t.iterator();
+		
+		while (iter.hasNext())System.out.print(iter.next());
 		
 		
 	}
