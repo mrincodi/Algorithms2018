@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * TODO:
  * - Clean code
  * - Add words with StringBuffer, not "+".
+ * - Instead of having an option for fixed size, have an option for "min_size" and "max"size",
+ *   where one or both can be -1. Fill out the dictionary with words with lengths in those boundaries.
  * 
  * @author mrincodi
  *
