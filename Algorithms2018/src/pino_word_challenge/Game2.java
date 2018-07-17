@@ -10,24 +10,26 @@ package pino_word_challenge;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Game_new  {
-	static final String DIR = "/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/dir";
-	int num_letters;
-	static final int MIN_NUM_LETTERS = 3;
+
+public class Game2  {
+	
+	private static final String DIR = "/Users/mrincodi/git/Algorithms2018/Algorithms2018/src/dir";
+	static int minNumLetters = 3;
+	static int maxNumLetters = 6;
 	static final int DEFAULT_NUM_LETTERS = 6;
-	basic_data_structures.Trie3 t;   // Trie with only words of word size.
-	basic_data_structures.Trie3 all; // Trie with all the words.
+	private basic_data_structures.Trie4 t;   // Trie with only words of word size.
+	private basic_data_structures.Trie4 all; // Trie with all the words.
 	String END_GAME = "FIN";
 
-	Game_new ( java.io.File dir, int num_letters ) throws IOException{
-		t = new basic_data_structures.Trie3(num_letters);
+	Game2 ( java.io.File dir, int num_letters ) throws IOException{
+		t = new basic_data_structures.Trie4(num_letters);
 		t.fillFromDir(dir);
 
-		//all = new basic_data_structures.Trie3(3, basic_data_structures.Trie3.NO_FIXED_SIZE);
+		all = new basic_data_structures.Trie4(minNumLetters, maxNumLetters);
 		all.fillFromDir(dir); // XXX
 	}
 
-	Game_new ( java.io.File dir ) throws IOException{
+	Game2 ( java.io.File dir ) throws IOException{
 		this (dir, DEFAULT_NUM_LETTERS);
 	}
 
@@ -53,7 +55,7 @@ public class Game_new  {
 	public void game () throws java.io.IOException{
 		java.io.File dir = new java.io.File (DIR);
 
-		Game_new g = new Game_new (dir);
+		Game2 g = new Game2 (dir);
 
 		while ( true ){ 
 			String w = g.t.getRandomWord();
@@ -126,8 +128,8 @@ public class Game_new  {
 		}
 	}
 	public static void main(String[] args) throws java.io.IOException {
-		java.io.File dir = new java.io.File (Game_new.DIR);
-		Game_new g = new Game_new (dir);
+		java.io.File dir = new java.io.File (Game2.DIR);
+		Game2 g = new Game2 (dir);
 
 		g.game();
 

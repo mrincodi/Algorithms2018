@@ -12,8 +12,8 @@ public class Solution {
 	// 1   2   4
 	//  \ /   / \     
 	//   3   5   8   
-	//	    \ / \   \
-	//	     6   7   9
+	//    \ / \   \
+	//     6   7   9
 
 	// Write a function that, for a given individual in our dataset, returns their earliest known ancestor -- the one at the farthest distance from the input individual. If there is more than one ancestor tied for “earliest”, return any one of them. If the input individual has no parents, the function should return null (or -1).
 
