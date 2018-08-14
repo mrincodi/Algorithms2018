@@ -1,4 +1,4 @@
-package interv.g;
+package interv.g.i1;
 
 import static org.junit.Assert.assertEquals;
 
