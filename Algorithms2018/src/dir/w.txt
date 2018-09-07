@@ -9,8 +9,6 @@ web
 weber
 weimarés
 wellingtonia
-wélter
-wéstern
 westfaliano
 whiskería
 whisky
@@ -18,5 +16,7 @@ wincha
 windsurf
 windsurfing
 windsurfista
-wólfram
 wolframio
+wélter
+wéstern
+wólfram

@@ -21,7 +21,6 @@ public class MySudokuSolver3 {
 	ArrayList < HashSet < Integer >> squs;
 	HashMap < String, HashSet < Integer>> possibles;
 
-
 	MySudokuSolver3 ( Integer [][]grid ){
 		this.grid = grid;
 		prepareSudoku ();
@@ -100,14 +99,48 @@ public class MySudokuSolver3 {
 	void solve ( ){
 
 		while (!isSolved ()){
-			
+
 			fillUniques();
 			// I need to change these methods so they take advantage of the "possibles" hashsets.
 			// Also, start working in "possibilities", if this doesn't solve it.
 			// (so, basically, recursion).
-			solveRows ();
-			solveCols ();
-			solveSquares();
+
+			boolean something = false;
+			
+			System.out.println ( "Voy con rows!!");
+			boolean a = solveRows ();
+
+			System.out.println ( "Voy con cols!!");
+			boolean b = solveCols ();
+
+			System.out.println ( "Voy con squares!!");
+			boolean c = solveSquares();
+			
+			if ( !a && !b && !c ) {
+				System.out.println ( "Ooops... Hasta aquí nos trajo el río?? :(");
+				
+				// TODO: Initial approach. Let's try with one position and let's see what happens.
+				 /* The idea is:
+				 * Go to the first empty position in the square:
+				 * For each possible value:
+				 * - Fill that position with that value.
+				 * - If I  get to a dead end, try with the other value.
+				 * - If this still doesn't work, enhance the program :)... To
+				 *   look into the next position.
+				 */
+				
+				// Find first zero in the first line. There must be one (I think, again,
+				// this is just an approach.
+				// TODO: MR: Continue here.
+//				int guineaPigCol = -1;
+//				
+//				for ( int i = 0; i < 9; i++ ){
+//					if ( it's zero... )
+//				}
+				
+				
+				return;
+			}
 		}
 		System.out.println ( "Solved!!");
 		printSudoku();
@@ -133,7 +166,7 @@ public class MySudokuSolver3 {
 				String [] posA = posS.split("_");
 				int row = Integer.parseInt(posA[0]);
 				int col = Integer.parseInt(posA[1]);
-				
+
 				Iterator < Integer > iter2 = possibles.get(posS).iterator();
 				int num =  iter2.next();
 				toRemove.add(row + "_" + col + "_" + num);
@@ -144,14 +177,15 @@ public class MySudokuSolver3 {
 			int row = Integer.parseInt(parts[0]);
 			int col = Integer.parseInt(parts[1]);
 			int num = Integer.parseInt(parts[2]);
-			
+
 			System.out.println ("Sweet!");
 			addNumberToGrid (row, col, num);	
 		}
 
 	}
 
-	private void solveSquares() {
+	private boolean solveSquares() {
+		boolean result = false;
 		int squ = 0;
 
 		outer:
@@ -182,6 +216,7 @@ public class MySudokuSolver3 {
 							System.out.println ("Squares!");
 							addNumberToGrid (pos / 3, pos % 3, num);
 							squ = 0;
+							result = true;
 							continue outer;
 						}
 
@@ -189,9 +224,11 @@ public class MySudokuSolver3 {
 				}
 				squ++;
 			}
+		return result;
 	}
 
-	private void solveRows() {
+	private boolean solveRows() {
+		boolean result = false;
 		int row = 0;
 		outer:
 			while (row < 9){
@@ -209,20 +246,20 @@ public class MySudokuSolver3 {
 							System.out.println ("Rows!");
 							addNumberToGrid (row, possibleCols.get(0), num);
 							row = 0;
+							result = true;
 							continue outer;
 						}
 
 					}
 				}
 				row++;
-
-
 			}
-
+		return result;
 	}
 
 
-	private void solveCols() {
+	private boolean solveCols() {
+		boolean result = false;
 		int col = 0;
 		outer:
 			while (col < 9){
@@ -240,6 +277,7 @@ public class MySudokuSolver3 {
 							System.out.println ("Cols!");
 							addNumberToGrid (possibleRows.get(0), col, num);
 							col = 0;
+							result = true;
 							continue outer;
 						}
 
@@ -247,6 +285,7 @@ public class MySudokuSolver3 {
 				}
 				col++;
 			}
+		return result;
 	}
 
 	private void addNumberToGrid(int row, int col, int num) {
@@ -276,25 +315,41 @@ public class MySudokuSolver3 {
 		Integer [][]grid = new Integer [9][9];
 		// Shame on you, Java, for not having a simpler way of initializing an array of arrays.
 		// (or shame on me, for not knowing it).
-//		grid [ 0 ] = new ArrayList <Integer >( Arrays.asList(0,9,1,0,0,0,6,3,0)).toArray(new Integer [ 9 ]);
-//		grid [ 1 ] = new ArrayList <Integer >( Arrays.asList(6,7,0,0,0,2,0,0,0)).toArray(new Integer [ 9 ]);
-//		grid [ 2 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,7,0,0,0,0)).toArray(new Integer [ 9 ]);
-//		grid [ 3 ] = new ArrayList <Integer >( Arrays.asList(9,0,0,1,0,0,0,0,0)).toArray(new Integer [ 9 ]);
-//		grid [ 4 ] = new ArrayList <Integer >( Arrays.asList(7,5,0,0,0,0,0,1,9)).toArray(new Integer [ 9 ]);
-//		grid [ 5 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,0,8,0,0,6)).toArray(new Integer [ 9 ]);
-//		grid [ 6 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,8,0,0,0,0)).toArray(new Integer [ 9 ]);
-//		grid [ 7 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,3,0,0,0,4,2)).toArray(new Integer [ 9 ]);
-//		grid [ 8 ] = new ArrayList <Integer >( Arrays.asList(0,3,7,0,0,0,8,5,0)).toArray(new Integer [ 9 ]);
+		// Not solved with this program :( :
+				grid [ 0 ] = new ArrayList <Integer >( Arrays.asList(0,9,1,0,0,0,6,3,0)).toArray(new Integer [ 9 ]);
+				grid [ 1 ] = new ArrayList <Integer >( Arrays.asList(6,7,0,0,0,2,0,0,0)).toArray(new Integer [ 9 ]);
+				grid [ 2 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,7,0,0,0,0)).toArray(new Integer [ 9 ]);
+				grid [ 3 ] = new ArrayList <Integer >( Arrays.asList(9,0,0,1,0,0,0,0,0)).toArray(new Integer [ 9 ]);
+				grid [ 4 ] = new ArrayList <Integer >( Arrays.asList(7,5,0,0,0,0,0,1,9)).toArray(new Integer [ 9 ]);
+				grid [ 5 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,0,8,0,0,6)).toArray(new Integer [ 9 ]);
+				grid [ 6 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,8,0,0,0,0)).toArray(new Integer [ 9 ]);
+				grid [ 7 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,3,0,0,0,4,2)).toArray(new Integer [ 9 ]);
+				grid [ 8 ] = new ArrayList <Integer >( Arrays.asList(0,3,7,0,0,0,8,5,0)).toArray(new Integer [ 9 ]);
 
-		grid [ 0 ] = new ArrayList <Integer >( Arrays.asList(0,0,6,0,3,0,4,0,8)).toArray(new Integer [ 9 ]);
-		grid [ 1 ] = new ArrayList <Integer >( Arrays.asList(3,0,0,4,0,0,1,0,9)).toArray(new Integer [ 9 ]);
-		grid [ 2 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,9,7,3,0,0)).toArray(new Integer [ 9 ]);
-		grid [ 3 ] = new ArrayList <Integer >( Arrays.asList(0,3,0,0,5,6,7,0,0)).toArray(new Integer [ 9 ]);
-		grid [ 4 ] = new ArrayList <Integer >( Arrays.asList(6,1,0,0,0,0,0,5,3)).toArray(new Integer [ 9 ]);
-		grid [ 5 ] = new ArrayList <Integer >( Arrays.asList(0,0,7,9,2,0,0,1,0)).toArray(new Integer [ 9 ]);
-		grid [ 6 ] = new ArrayList <Integer >( Arrays.asList(0,0,3,7,1,0,0,0,0)).toArray(new Integer [ 9 ]);
-		grid [ 7 ] = new ArrayList <Integer >( Arrays.asList(2,0,1,0,0,9,0,0,7)).toArray(new Integer [ 9 ]);
-		grid [ 8 ] = new ArrayList <Integer >( Arrays.asList(7,0,8,0,6,0,9,0,0)).toArray(new Integer [ 9 ]);
+		// Solved:
+//		grid [ 0 ] = new ArrayList <Integer >( Arrays.asList(0,0,6,0,3,0,4,0,8)).toArray(new Integer [ 9 ]);
+//		grid [ 1 ] = new ArrayList <Integer >( Arrays.asList(3,0,0,4,0,0,1,0,9)).toArray(new Integer [ 9 ]);
+//		grid [ 2 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,9,7,3,0,0)).toArray(new Integer [ 9 ]);
+//		grid [ 3 ] = new ArrayList <Integer >( Arrays.asList(0,3,0,0,5,6,7,0,0)).toArray(new Integer [ 9 ]);
+//		grid [ 4 ] = new ArrayList <Integer >( Arrays.asList(6,1,0,0,0,0,0,5,3)).toArray(new Integer [ 9 ]);
+//		grid [ 5 ] = new ArrayList <Integer >( Arrays.asList(0,0,7,9,2,0,0,1,0)).toArray(new Integer [ 9 ]);
+//		grid [ 6 ] = new ArrayList <Integer >( Arrays.asList(0,0,3,7,1,0,0,0,0)).toArray(new Integer [ 9 ]);
+//		grid [ 7 ] = new ArrayList <Integer >( Arrays.asList(2,0,1,0,0,9,0,0,7)).toArray(new Integer [ 9 ]);
+//		grid [ 8 ] = new ArrayList <Integer >( Arrays.asList(7,0,8,0,6,0,9,0,0)).toArray(new Integer [ 9 ]);
+//		
+		
+	// Solved:	
+//		grid [ 0 ] = new ArrayList <Integer >( Arrays.asList(0,0,5,1,0,0,0,4,2)).toArray(new Integer [ 9 ]);
+//		grid [ 1 ] = new ArrayList <Integer >( Arrays.asList(1,9,0,7,0,0,0,0,0)).toArray(new Integer [ 9 ]);
+//		grid [ 2 ] = new ArrayList <Integer >( Arrays.asList(7,0,3,0,8,0,0,0,1)).toArray(new Integer [ 9 ]);
+//		grid [ 3 ] = new ArrayList <Integer >( Arrays.asList(5,0,0,9,7,0,1,0,0)).toArray(new Integer [ 9 ]);
+//		grid [ 4 ] = new ArrayList <Integer >( Arrays.asList(0,8,6,0,0,0,9,7,0)).toArray(new Integer [ 9 ]);
+//		grid [ 5 ] = new ArrayList <Integer >( Arrays.asList(0,0,1,0,4,6,0,0,3)).toArray(new Integer [ 9 ]);
+//		grid [ 6 ] = new ArrayList <Integer >( Arrays.asList(4,0,0,0,3,0,8,0,5)).toArray(new Integer [ 9 ]);
+//		grid [ 7 ] = new ArrayList <Integer >( Arrays.asList(0,0,0,0,0,9,0,6,7)).toArray(new Integer [ 9 ]);
+//		grid [ 8 ] = new ArrayList <Integer >( Arrays.asList(6,1,0,0,0,8,4,0,0)).toArray(new Integer [ 9 ]);
+//		
+		
 		MySudokuSolver3 mss = new MySudokuSolver3(grid);
 		mss.solve();
 
